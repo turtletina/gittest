@@ -1,0 +1,13 @@
+{
+    "maze_format": "adjacency list",
+    "maze_data": 
+    {
+        "s": ["a", "c"],
+        "a": ["s", "b", "d"],
+        "b": ["a", "c", "f"],
+        "c": ["s", "b"],
+        "d": ["a", "e"],
+        "e": ["d", "f"],
+        "f": ["b", "e"]
+    }
+}
