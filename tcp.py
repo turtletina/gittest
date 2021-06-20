@@ -148,6 +148,8 @@ class Maze:
         return 0
         # Tips : return an action and the next direction of the car if the nd_to is the Successor of nd_from
         # If not, print error message and return 0
+
+
 def turn_al(mes):
     if(mes==1):al = 'a'  #advance
     elif(mes==2):al = 'u' #u_turn
@@ -157,19 +159,24 @@ def turn_al(mes):
     return al
 def turn_str(mes):
     return str(mes)
-def seperate(MyRequest):
+def turn_dir(cardirection):
+    if (cardirection == 1):
+        return '1'
+    elif (cardirection == 2):
+        return '2'
+    elif (cardirection == 3):
+        return '3'
+    elif (cardirection == 4):
+        return '4'
+def seperate1(MyRequest):   # 取百位(3位數)
     num = int(MyRequest)
     num = num // 100
     return turn_str(num)
-def seperate0(MyRequest):
+def seperate2(MyRequest):   #取十位(3位數)
     num = int(MyRequest)
     num = (num // 10) % 10
     return turn_str(num)
-def seperate1(MyRequest):
-    num = int(MyRequest)
-    num = num // 10
-    return turn_str(num)
-def seperate2(MyRequest):
+def seperate3(MyRequest):   #取個位(3位數)
     num = int(MyRequest)
     num = num % 10
     return turn_str(num)
@@ -230,27 +237,26 @@ first = True
 
 class RequestHandler_httpd(BaseHTTPRequestHandler):
     def do_GET(self):
-        global MyRequest,first,start,sequence,record
+        global MyRequest,first,start,sequence,record,car_d
         
         MyRequest = self.requestline
         MyRequest = MyRequest[5: int(len(MyRequest) - 9) ]
         print('You received this request: ',MyRequest)
         
-        if MyRequest <='664' and MyRequest >= '111':
+        if MyRequest <='664' and MyRequest >= '1':
             if first:
                 maze =Maze()
-                start=seperate(MyRequest)
-                car_d=seperate2(MyRequest)
+                start=seperate1(MyRequest)
+                end=seperate2(MyRequest)
+                car_d=seperate3(MyRequest)
                 car_direction=Direction(int(car_d))
-                end=seperate0(MyRequest)
                 first = False
-            elif MyRequest <='64' and MyRequest >= '11':
+            elif MyRequest <='6':
                 maze =Maze()
                 start = sequence[-1]
-                car_d=seperate2(MyRequest)
                 car_direction=Direction(int(car_d))
-                end=seperate1(MyRequest)
-            print('start is ',start,',and end is ',end,'and car_d is ',car_d,)               
+                end=MyRequest
+            print('start is ',start,',and end is ',end,'and car_d is ',car_d)               
             sequence=[start]
             sequence+=maze.BFS_2(start,end) #list of type:str
             print("the node sequence is: ")
@@ -262,6 +268,10 @@ class RequestHandler_httpd(BaseHTTPRequestHandler):
                 print(a)
                 record.append(turn_al(a))
                 car_direction=maze.update_cardirc(sequence[i], sequence[i+1])
+                '''car_d = str(car_direction) 
+                print(car_d)'''
+            car_d = turn_dir(car_direction) 
+            print(car_d)
             print(record)
             #record.clear()
             messagetosend = bytes(",".join(record),"utf")

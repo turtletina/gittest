@@ -1,0 +1,22 @@
+表單回應網址
+https://docs.google.com/forms/d/e/1FAIpQLSeIvY7TIKyeXOtlCOBmKXhr9b510g0-nCrjij-3hWoSvuEq5w/viewform?usp=pp_url&entry.1383590221=start&entry.1948706746=end
+
+表單網址
+https://docs.google.com/forms/d/1ihCddi8jxTgQO61SLKSMOqLD8J24yG4VvSE6dUPozI8/formResponse
+
+修改格式
+entry.1383590221=start
+entry.1948706746=end
+
+試算表網址
+https://docs.google.com/spreadsheets/d/14ctbutaKvB29taZ4mxUfvEVHdbaisssaxgPKMYqPUxM/edit#gid=0
+
+https://spreadsheets.google.com/tq?
+
+修改格式
+tqx=out:csv
+key=14ctbutaKvB29taZ4mxUfvEVHdbaisssaxgPKMYqPUxM
+tq=select B, C
+
+https://spreadsheets.google.com/tq?tqx=out:csv&key=14ctbutaKvB29taZ4mxUfvEVHdbaisssaxgPKMYqPUxM&tq=select B, C
+
